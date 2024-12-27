@@ -1,0 +1,20 @@
+---
+const posts = await Astro.glob('../content/blog/*.mdx');
+const featuredPosts = posts.filter(post => post.frontmatter.featured).slice(0, 3);
+---
+
+<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+  {featuredPosts.map(post => (
+    <article class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-6">
+      <a href={`/blog/${post.frontmatter.slug}`}>
+        <img 
+          src={post.frontmatter.image} 
+          alt={post.frontmatter.title}
+          class="rounded-lg mb-4 aspect-video object-cover"
+        />
+        <h3 class="font-display text-xl font-bold mb-2">{post.frontmatter.title}</h3>
+        <p class="text-secondary line-clamp-2">{post.frontmatter.excerpt}</p>
+      </a>
+    </article>
+  ))}
+</div>

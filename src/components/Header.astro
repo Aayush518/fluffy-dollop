@@ -1,0 +1,26 @@
+---
+const navItems = [
+  { href: '/', text: 'Home' },
+  { href: '/blog', text: 'Blog' },
+  { href: '/opinions', text: 'Unpopular Opinions' },
+  { href: '/about', text: 'About' },
+];
+---
+
+<header class="border-b border-gray-200 bg-white/80 backdrop-blur-sm fixed w-full top-0 z-50">
+  <nav class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
+    <a href="/" class="font-display text-xl font-bold text-primary">YourName</a>
+    <ul class="flex gap-6">
+      {navItems.map(item => (
+        <li>
+          <a 
+            href={item.href}
+            class="text-secondary hover:text-primary transition-colors"
+          >
+            {item.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import { format } from 'date-fns';
+
+const posts = await getCollection('blog');
+const featuredPosts = posts
+  .filter(post => post.data.featured)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 3);
+---
+
+<section class="py-32 bg-zinc-900/50">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-5xl font-bold mb-4">Latest Articles</h2>
+      <p class="text-zinc-400 text-xl max-w-2xl mx-auto">
+        Thoughts and insights about web development, design, and technology.
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      {featuredPosts.map(post => (
+        <a href={`/blog/${post.slug}`} class="group">
+          <article class="card-hover rounded-2xl overflow-hidden">
+            <div class="aspect-video overflow-hidden">
+              <img 
+                src={post.data.image} 
+                alt={post.data.title}
+                class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-4 text-sm text-zinc-400 mb-4">
+                <time datetime={post.data.date}>
+                  {format(new Date(post.data.date), 'MMM d, yyyy')}
+                </time>
+                <span>•</span>
+                <span>{post.data.readingTime} min read</span>
+              </div>
+              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                {post.data.title}
+              </h3>
+              <p class="text-zinc-400 line-clamp-2">
+                {post.data.excerpt}
+              </p>
+            </div>
+          </article>
+        </a>
+      ))}
+    </div>
+    
+    <div class="text-center mt-12">
+      <a 
+        href="/blog" 
+        class="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium"
+      >
+        View All Articles
+        <span class="text-lg">→</span>
+      </a>
+    </div>
+  </div>
+</section>

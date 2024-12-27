@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { projects } from '../../data/projects';
+---
+
+<Layout title="Projects - Aayush Adhikari">
+  <section class="py-32">
+    <div class="max-w-7xl mx-auto px-4">
+      <h1 class="font-display text-5xl font-bold mb-16 text-center">
+        Featured <span class="text-gradient">Projects</span>
+      </h1>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        {projects.map(project => (
+          <a href={`/projects/${project.slug}`} class="group">
+            <article class="card-hover rounded-2xl overflow-hidden">
+              <div class="aspect-video overflow-hidden">
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div class="p-8">
+                <div class="flex gap-2 flex-wrap mb-4">
+                  {project.tags.map(tag => (
+                    <span class="px-3 py-1 bg-zinc-800/50 backdrop-blur-sm text-sm rounded-full">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h3 class="font-display text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+                <p class="text-zinc-400">
+                  {project.description}
+                </p>
+              </div>
+            </article>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

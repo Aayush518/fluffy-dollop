@@ -1,0 +1,28 @@
+---
+const navItems = [
+  { href: '/', text: 'Home' },
+  { href: '/projects', text: 'Projects' },
+  { href: '/blog', text: 'Blog' },
+  { href: '/opinions', text: 'Opinions' },
+  { href: '/resume', text: 'Resume' },
+];
+---
+
+<nav class="fixed top-0 w-full z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="font-display text-xl font-bold text-gradient">Aayush Adhikari</a>
+      
+      <div class="hidden md:flex space-x-8">
+        {navItems.map(link => (
+          <a 
+            href={link.href}
+            class="text-zinc-400 hover:text-white transition-colors"
+          >
+            {link.text}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { format } from 'date-fns';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => 
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+---
+
+<Layout title="Blog">
+  <section class="py-32">
+    <div class="max-w-7xl mx-auto px-4">
+      <h1 class="font-display text-5xl font-bold mb-16 text-center">
+        Latest <span class="text-gradient">Articles</span>
+      </h1>
+      
+      <div class="grid gap-12 max-w-4xl mx-auto">
+        {sortedPosts.map(post => (
+          <article class="group">
+            <a href={`/blog/${post.slug}`} class="grid md:grid-cols-5 gap-8">
+              <div class="md:col-span-2">
+                <div class="aspect-video rounded-2xl overflow-hidden">
+                  <img 
+                    src={post.data.image} 
+                    alt={post.data.title}
+                    class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+              </div>
+              <div class="md:col-span-3">
+                <div class="flex items-center gap-4 text-sm text-zinc-400 mb-4">
+                  <time datetime={post.data.date}>
+                    {format(new Date(post.data.date), 'MMMM d, yyyy')}
+                  </time>
+                  <span>•</span>
+                  <span>{post.data.readingTime} min read</span>
+                </div>
+                <h2 class="font-display text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                  {post.data.title}
+                </h2>
+                <p class="text-zinc-400 line-clamp-2">
+                  {post.data.excerpt}
+                </p>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

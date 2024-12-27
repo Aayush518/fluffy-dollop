@@ -1,0 +1,76 @@
+---
+import ProjectCard from './ProjectCard.astro';
+
+const projects = [
+  {
+    title: "Immersive 3D Portfolio",
+    description: "Interactive 3D portfolio built with Three.js and React, featuring custom shaders and animations",
+    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee",
+    tags: ["Three.js", "React", "WebGL"],
+    slug: "immersive-3d-portfolio" // Added slug for routing
+  },
+  {
+    title: "AI-Powered Design Tool",
+    description: "Revolutionary design tool using AI to generate and customize unique visual elements",
+    image: "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2",
+    tags: ["Next.js", "TensorFlow", "Python"],
+    slug: "ai-powered-design-tool"
+  },
+  {
+    title: "Crypto Trading Platform",
+    description: "Real-time cryptocurrency trading platform with advanced analytics and AI predictions",
+    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0",
+    tags: ["Vue", "Node.js", "WebSocket"],
+    slug: "crypto-trading-platform"
+  },
+  {
+    title: "Social Audio App",
+    description: "Next-gen social platform focused on audio sharing and real-time collaboration",
+    image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04",
+    tags: ["React Native", "WebRTC", "AWS"],
+    slug: "social-audio-app"
+  }
+];
+---
+
+<section id="work" class="py-32">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-5xl font-bold mb-4">Featured Work</h2>
+      <p class="text-zinc-400 text-xl max-w-2xl mx-auto">
+        A collection of projects that showcase my expertise in creating innovative digital solutions.
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      {projects.map(project => (
+        <a href={`/projects/${project.slug}`} class="group">
+          <article class="card-hover rounded-2xl overflow-hidden">
+            <div class="aspect-video overflow-hidden">
+              <img 
+                src={project.image}
+                alt={project.title}
+                class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+              />
+            </div>
+            <div class="p-8">
+              <div class="flex gap-2 flex-wrap mb-4">
+                {project.tags.map(tag => (
+                  <span class="px-3 py-1 bg-zinc-800/50 backdrop-blur-sm text-sm rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <h3 class="font-display text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
+                {project.title}
+              </h3>
+              <p class="text-zinc-400">
+                {project.description}
+              </p>
+            </div>
+          </article>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,92 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TechStack from '../../components/TechStack.astro';
+
+const experience = [
+  {
+    role: "Senior Full Stack Developer",
+    company: "Tech Corp",
+    period: "2020 - Present",
+    description: "Led development of enterprise applications using Next.js and Node.js",
+    achievements: [
+      "Improved application performance by 60%",
+      "Implemented CI/CD pipeline reducing deployment time by 75%",
+      "Mentored junior developers and conducted code reviews"
+    ]
+  },
+  {
+    role: "Full Stack Developer",
+    company: "Innovation Labs",
+    period: "2018 - 2020",
+    description: "Developed scalable web applications using React and Node.js",
+    achievements: [
+      "Built and launched 3 major client projects ahead of schedule",
+      "Reduced server costs by 40% through optimization",
+      "Implemented automated testing improving code coverage to 90%"
+    ]
+  }
+];
+
+const skills = {
+  frontend: ["React", "Vue", "Next.js", "TypeScript", "Tailwind CSS"],
+  backend: ["Node.js", "Python", "PostgreSQL", "GraphQL", "Redis"],
+  devops: ["Docker", "AWS", "CI/CD", "Kubernetes", "Terraform"]
+};
+---
+
+<Layout title="Resume">
+  <section class="py-16 sm:py-20 lg:py-32">
+    <div class="container max-w-4xl mx-auto px-4 sm:px-6">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-center text-slate-500">
+        Professional <span class="text-indigo-600">Experience</span>
+      </h1>
+
+      <!-- Experience Section -->
+      <div class="space-y-8 sm:space-y-12 mb-16">
+        {experience.map(job => (
+          <div class="border border-slate-200 rounded-xl p-6 sm:p-8 hover:border-indigo-200 transition-colors duration-300">
+            <div class="flex flex-col sm:flex-row sm:items-start justify-between mb-4 sm:mb-6">
+              <div>
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-500">{job.role}</h3>
+                <p class="text-indigo-600 mt-1">{job.company}</p>
+              </div>
+              <span class="text-slate-500 mt-2 sm:mt-0">{job.period}</span>
+            </div>
+            <p class="text-slate-500 mb-6">{job.description}</p>
+            <ul class="space-y-3">
+              {job.achievements.map(achievement => (
+                <li class="flex items-start gap-3">
+                  <span class="text-indigo-400 mt-1.5">•</span>
+                  <span class="text-slate-500">{achievement}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <!-- Skills Section -->
+      <div class="border border-slate-200 rounded-xl p-6 sm:p-8 mb-16 hover:border-indigo-200 transition-colors duration-300">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-8 text-slate-800">Technical Skills</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {Object.entries(skills).map(([category, items]) => (
+            <div>
+              <h3 class="text-indigo-600 font-medium mb-4 capitalize">{category}</h3>
+              <ul class="space-y-2">
+                {items.map(skill => (
+                  <li class="text-slate-600 hover:text-slate-800 transition-colors duration-200">
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Tech Stack Section -->
+      <TechStack />
+    </div>
+  </section>
+</Layout>
+

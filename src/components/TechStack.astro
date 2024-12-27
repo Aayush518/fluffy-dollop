@@ -1,0 +1,39 @@
+---
+const technologies = [
+  {
+    category: "Frontend",
+    items: ["React", "Next.js", "Vue", "Tailwind CSS", "TypeScript"]
+  },
+  {
+    category: "Backend",
+    items: ["Node.js", "Python", "PostgreSQL", "Redis", "GraphQL"]
+  },
+  {
+    category: "DevOps",
+    items: ["Docker", "AWS", "CI/CD", "Kubernetes", "Terraform"]
+  }
+];
+---
+
+<section class="py-16">
+  <div class="container max-w-4xl mx-auto px-4 sm:px-6">
+    <h2 class="text-2xl sm:text-3xl font-bold mb-8 text-center text-slate-800">Tech Stack</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      {technologies.map(tech => (
+        <div class="border border-slate-200 rounded-xl p-6 hover:border-indigo-200 transition-colors duration-300">
+          <h3 class="text-xl font-bold mb-4 text-slate-800">{tech.category}</h3>
+          <ul class="space-y-2">
+            {tech.items.map(item => (
+              <li class="flex items-center gap-2 text-slate-600 hover:text-slate-800 transition-colors duration-200">
+                <svg class="w-4 h-4 text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

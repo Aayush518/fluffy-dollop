@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+---
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Gradient Orb -->
+  <div class="absolute w-[800px] h-[800px] gradient-blur"></div>
+  
+  <!-- Content -->
+  <div class="relative z-10 max-w-5xl mx-auto px-4 py-32 text-center">
+    <h1 class="font-display text-7xl md:text-8xl font-bold mb-8 leading-tight">
+      Crafting Digital <span class="text-gradient">Experiences</span>
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto mb-12">
+      Full-stack developer turning complex ideas into elegant solutions. 
+      Specializing in creating immersive web experiences that leave a lasting impression.
+    </p>
+    
+    <div class="flex flex-wrap gap-6 justify-center">
+      <a 
+        href="#work" 
+        class="group px-8 py-4 bg-primary/10 hover:bg-primary/20 text-primary rounded-full font-medium transition-all duration-300"
+      >
+        View My Work
+        <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
+      </a>
+      <a 
+        href="#contact" 
+        class="px-8 py-4 bg-zinc-800 hover:bg-zinc-700 rounded-full font-medium transition-all duration-300"
+      >
+        Get in Touch
+      </a>
+    </div>
+  </div>
+</section>

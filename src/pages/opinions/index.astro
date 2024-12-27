@@ -1,0 +1,39 @@
+<!-- src/pages/opinions/index.astro -->
+---
+import Layout from '../../layouts/Layout.astro';
+import { opinions } from '../../data/opinions';
+---
+
+<Layout title="Unpopular Opinions - Aayush Adhikari">
+  <section class="py-32">
+    <div class="max-w-7xl mx-auto px-4">
+      <h1 class="font-display text-5xl font-bold mb-16 text-center">
+        Unpopular <span class="text-gradient">Opinions</span>
+      </h1>
+      
+      <div class="grid gap-8 max-w-3xl mx-auto">
+        {opinions.map(opinion => (
+          <a href={`/opinions/${opinion.slug}`} class="group">
+            <article class="card-hover rounded-2xl p-8">
+              <div class="flex items-center gap-4 mb-3">
+                <span class="text-sm text-zinc-400">{opinion.category}</span>
+                <span class="w-1 h-1 bg-zinc-700 rounded-full"></span>
+                <span class="text-sm text-zinc-400">{opinion.date}</span>
+              </div>
+              
+              <h2 class="font-display text-2xl font-bold mb-4 group-hover:text-primary transition-colors">
+                {opinion.title}
+              </h2>
+              <p class="text-zinc-400 mb-6">{opinion.excerpt}</p>
+              
+              <div class="flex items-center text-primary group-hover:text-primary/80 font-medium transition-colors">
+                Read More
+                <span class="ml-2 transform group-hover:translate-x-1 transition-transform duration-200">→</span>
+              </div>
+            </article>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
