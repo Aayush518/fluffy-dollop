@@ -13,6 +13,26 @@ const navItems = [
     <div class="flex items-center justify-between h-16">
       <a href="/" class="font-display text-xl font-bold text-gradient">Aayush Adhikari</a>
       
+      <div class="md:hidden flex items-center">
+        <button id="mobile-menu-button" class="text-zinc-400 hover:text-white focus:outline-none focus:text-white">
+          <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+            <path id="menu-icon" fill-rule="evenodd" d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div id="mobile-menu" class="hidden md:hidden absolute top-16 right-0 w-full bg-zinc-900/90 backdrop-blur-md border-b border-zinc-800/50 p-4 space-y-2">
+        {navItems.map(link => (
+          <a 
+            href={link.href}
+            class="block text-zinc-400 hover:text-white transition-colors py-2 px-4 rounded-md hover:bg-zinc-800/50"
+          >
+            {link.text}
+          </a>
+        ))}
+      </div>
+
+
       <div class="hidden md:flex space-x-8">
         {navItems.map(link => (
           <a 
@@ -26,3 +46,22 @@ const navItems = [
     </div>
   </div>
 </nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        if(!mobileMenu.classList.contains('hidden')){
+            menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+
+        } else {
+            menuIcon.setAttribute('d', 'M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z')
+        }
+        
+      });
+  });
+</script>

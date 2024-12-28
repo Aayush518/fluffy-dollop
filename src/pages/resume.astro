@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Resume from '../components/Resume';
+import { getEntry } from 'astro:content';
+
+const resumeData = await getEntry('resume', 'resume');
+const { data } = resumeData;
+---
+
+<Layout title="Resume | Professional Experience">
+  <main class="min-h-screen bg-zinc-950 py-16 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-8">
+        <!-- <a href="/" class="text-zinc-400 hover:text-emerald-400 transition-colors">
+          ← Back to Home
+        </a> -->
+      </div>
+      <Resume data={data} client:load />
+    </div>
+  </main>
+</Layout>
